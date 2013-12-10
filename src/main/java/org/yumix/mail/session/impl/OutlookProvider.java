@@ -1,4 +1,4 @@
-package org.yumix.mail.session.spi;
+package org.yumix.mail.session.impl;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
