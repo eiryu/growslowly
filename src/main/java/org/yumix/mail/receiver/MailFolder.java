@@ -11,12 +11,27 @@ import javax.mail.MessagingException;
 import javax.mail.Store;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * @author Yumi Hiraoka - yumix at outlook.com
+ *
+ */
 public class MailFolder implements AutoCloseable {
 	
-	private Folder folder;
+	/**
+	 * 
+	 */
+	private final Folder folder;
 	
+	/**
+	 * 
+	 */
 	private final MessageProtocol messageProtocol;
 	
+	/**
+	 * @param store
+	 * @param folderName
+	 * @param messageProtocol
+	 */
 	MailFolder(Store store, String folderName, MessageProtocol messageProtocol) {
 		if (store == null || folderName == null || messageProtocol == null) {
 			throw new NullPointerException();
@@ -32,6 +47,10 @@ public class MailFolder implements AutoCloseable {
 		}
 	}
 	
+	/**
+	 * @param folder
+	 * @param messageProtocol
+	 */
 	MailFolder(Folder folder, MessageProtocol messageProtocol) {
 		if (folder == null || messageProtocol == null) {
 			throw new NullPointerException();
@@ -47,19 +66,31 @@ public class MailFolder implements AutoCloseable {
 		}
 	}
 	
+	/**
+	 * @return
+	 */
 	public String getName() {
 		return folder.getName();
 	}
 	
+	/**
+	 * @return
+	 */
 	public String getFullName() {
 		return folder.getFullName();
 	}
 	
+	/* (非 Javadoc)
+	 * @see java.lang.AutoCloseable#close()
+	 */
 	@Override
 	public void close() throws Exception {
 		folder.close(false);
 	}
 	
+	/**
+	 * @return
+	 */
 	public List<MailFolder> listFolders() {
 		List<MailFolder> mailFolders = new ArrayList<>();
 		
@@ -76,6 +107,10 @@ public class MailFolder implements AutoCloseable {
 		return mailFolders;
 	}
 	
+	/**
+	 * @param messageDecoder
+	 * @return
+	 */
 	public <E> List<E> listMessages(MessageDecoder<E> messageDecoder) {
 		try {
 			List<E> receivedMessages = new ArrayList<>();

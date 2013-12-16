@@ -10,7 +10,14 @@ import javax.mail.Session;
 
 import org.yumix.mail.session.SessionProvider;
 
+/**
+ * @author Yumi Hiraoka - yumix at outlook.com
+ *
+ */
 public class OCNProvider implements SessionProvider {
+	/* (非 Javadoc)
+	 * @see org.yumix.mail.session.SessionProvider#getSession(java.lang.String, java.lang.String, java.lang.String)
+	 */
 	@Override
 	public Session getSession(final String address, final String userName, final String password) {
 //		String domain = address.substring(address.indexOf("@") + 1);

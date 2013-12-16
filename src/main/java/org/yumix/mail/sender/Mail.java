@@ -28,7 +28,7 @@ import javax.mail.internet.MimeMultipart;
 /**
  * This class performs to create and send a mail.
  * 
- * @author Yumi Hiraoka
+ * @author Yumi Hiraoka - yumix at outlook.xom
  */
 public class Mail {
 	
