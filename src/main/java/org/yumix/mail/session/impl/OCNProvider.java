@@ -13,13 +13,13 @@ import org.yumix.mail.session.SessionProvider;
 public class OCNProvider implements SessionProvider {
 	@Override
 	public Session getSession(final String address, final String userName, final String password) {
-		String domain = address.substring(address.indexOf("@") + 1);
+//		String domain = address.substring(address.indexOf("@") + 1);
 		Properties props = new Properties();
 		try {
 			props.load(new InputStreamReader(getClass().getResourceAsStream("/ocn.properties")));
 			props.setProperty("mail.from", address);
-			props.setProperty("mail.smtp.host", "smtp.vc" + domain);
-			props.setProperty("mail.pop3.host", domain);
+//			props.setProperty("mail.smtp.host", "smtp.vc" + domain);
+//			props.setProperty("mail.pop3.host", domain);
 		} catch (IOException e) {
 			return null;
 		}
