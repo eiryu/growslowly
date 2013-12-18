@@ -15,7 +15,7 @@ import org.yumix.mail.session.SessionProvider;
  *
  */
 public class OCNProvider implements SessionProvider {
-	/* (非 Javadoc)
+	/* (non Javadoc)
 	 * @see org.yumix.mail.session.SessionProvider#getSession(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override

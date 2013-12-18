@@ -31,7 +31,7 @@ public class MailBox implements AutoCloseable {
 			store = session.getStore(messageProtocol.getName());
 			store.connect();
 		} catch (MessagingException e) {
-			throw new RuntimeException(e.getMessage(), e);
+			throw new MailReceiverException(e);
 		}
 	}
 

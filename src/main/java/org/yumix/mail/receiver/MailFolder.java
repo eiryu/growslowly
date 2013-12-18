@@ -43,7 +43,7 @@ public class MailFolder implements AutoCloseable {
 			folder = store.getFolder(folderName);
 			folder.open(Folder.READ_ONLY);
 		} catch (MessagingException e) {
-			throw new RuntimeException(e.getMessage(), e);
+			throw new MailReceiverException(e);
 		}
 	}
 	
@@ -62,7 +62,7 @@ public class MailFolder implements AutoCloseable {
 			this.folder = folder;
 			folder.open(Folder.READ_ONLY);
 		} catch (MessagingException e) {
-			throw new RuntimeException(e.getMessage(), e);
+			throw new MailReceiverException(e);
 		}
 	}
 	
@@ -80,7 +80,7 @@ public class MailFolder implements AutoCloseable {
 		return folder.getFullName();
 	}
 	
-	/* (非 Javadoc)
+	/* (non Javadoc)
 	 * @see java.lang.AutoCloseable#close()
 	 */
 	@Override
@@ -100,7 +100,7 @@ public class MailFolder implements AutoCloseable {
 					mailFolders.add(new MailFolder(subFolder, messageProtocol));
 				}
 			} catch (MessagingException e) {
-				throw new RuntimeException(e.getMessage(), e);
+				throw new MailReceiverException(e);
 			}
 		}
 		
@@ -120,7 +120,7 @@ public class MailFolder implements AutoCloseable {
 			}
 			return receivedMessages;
 		} catch (MessagingException e) {
-			throw new RuntimeException(e.getMessage(), e);
+			throw new MailReceiverException(e);
 		}
 	}
 }

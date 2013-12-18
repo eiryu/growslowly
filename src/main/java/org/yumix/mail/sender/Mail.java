@@ -314,7 +314,7 @@ public class Mail {
 				
 				Transport.send(msg);
 			} catch (MessagingException e) {
-				throw new RuntimeException(e.getMessage(), e);
+				throw new MailSenderException(e);
 			}
 		}
 		
@@ -332,7 +332,7 @@ public class Mail {
 			try {
 				return new InternetAddress(matcher.replaceFirst("$2"), matcher.replaceFirst("$1"), cs.name());
 			} catch (UnsupportedEncodingException e) {
-				throw new RuntimeException(e.getMessage(), e);
+				throw new IllegalArgumentException(e.getMessage(), e);
 			}
 		}
 		
@@ -344,7 +344,7 @@ public class Mail {
 				try {
 					internetAddresses.add(new InternetAddress(matcher.replaceFirst("$2"), matcher.replaceFirst("$1"), cs.name()));
 				} catch (UnsupportedEncodingException e) {
-					throw new RuntimeException(e.getMessage(), e);
+					throw new IllegalArgumentException(e.getMessage(), e);
 				}
 			}
 			return internetAddresses.toArray(new InternetAddress[addresses.size()]);

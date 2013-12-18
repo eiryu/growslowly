@@ -31,7 +31,7 @@ public class SessionProviderFactory {
 			SessionProvider sessionProvider = SessionProvider.class.cast(clazz.newInstance());
 			return sessionProvider.getSession(address, userName, password);
 		} catch (InstantiationException | IllegalAccessException e) {
-			throw new RuntimeException(e);
+			throw new IllegalStateException(e);
 		}
 	}
 }
