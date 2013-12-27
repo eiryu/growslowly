@@ -8,6 +8,11 @@ import javax.mail.Session;
  */
 public interface SessionProvider {
 	/**
+	 * @return
+	 */
+	Session getSession();
+	
+	/**
 	 * @param address
 	 * @param userName
 	 * @param password

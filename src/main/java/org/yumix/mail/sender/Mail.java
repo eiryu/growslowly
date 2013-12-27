@@ -166,7 +166,11 @@ public class Mail {
 		 * @return the reference to itself
 		 */
 		public Builder to(String...addresses) {
-			rcptTo.addAll(Arrays.asList(addresses));
+			for (String address : addresses) {
+				if (!(address == null || address.trim().isEmpty())) {
+					rcptTo.addAll(Arrays.asList(addresses));
+				}
+			}
 			return this;
 		}
 		
@@ -180,7 +184,11 @@ public class Mail {
 		 * @return the reference to itself
 		 */
 		public Builder cc(String...addresses) {
-			rcptCc.addAll(Arrays.asList(addresses));
+			for (String address : addresses) {
+				if (!(address == null || address.trim().isEmpty())) {
+					rcptCc.addAll(Arrays.asList(addresses));
+				}
+			}
 			return this;
 		}
 		
@@ -194,7 +202,11 @@ public class Mail {
 		 * @return the reference to itself
 		 */
 		public Builder bcc(String...addresses) {
-			rcptBcc.addAll(Arrays.asList(addresses));
+			for (String address : addresses) {
+				if (!(address == null || address.trim().isEmpty())) {
+					rcptBcc.addAll(Arrays.asList(addresses));
+				}
+			}
 			return this;
 		}
 		
@@ -286,19 +298,36 @@ public class Mail {
 		 * @param session JavaMail session
 		 */
 		public void send(Session session) {
+			if (sendFrom == null || sendFrom.isEmpty()) {
+				throw new IllegalArgumentException("Sender address is required");
+			}
+			if (rcptTo.isEmpty() && rcptCc.isEmpty() && rcptBcc.isEmpty()) {
+				throw new IllegalArgumentException("Recipient address(es) is required");
+			}
+			
 			MimeMessage msg = new MimeMessage(session);
 			try {
 				msg.setFrom(toInternetAddress(sendFrom));
-				msg.addRecipients(TO, toInternetAddress(rcptTo));
-				msg.addRecipients(CC, toInternetAddress(rcptCc));
-				msg.addRecipients(BCC, toInternetAddress(rcptBcc));
-				msg.setSubject(subject, cs.name());
+				if (!rcptTo.isEmpty()) {
+					msg.addRecipients(TO, toInternetAddress(rcptTo));
+				}
+				if (!rcptCc.isEmpty()) {
+					msg.addRecipients(CC, toInternetAddress(rcptCc));
+				}
+				if (!rcptBcc.isEmpty()) {
+					msg.addRecipients(BCC, toInternetAddress(rcptBcc));
+				}
+				if (!(subject == null || subject.isEmpty())) {
+					msg.setSubject(subject, cs.name());
+				}
 				
 				if (attachments.isEmpty()) {
-					msg.setText(message, cs.name());
+					if (!(message == null || message.isEmpty())) {
+						msg.setText(message, cs.name());
+					}
 				} else {
 					MimeMultipart mp = new MimeMultipart();
-					if (message != null && !message.isEmpty()) {
+					if (!(message == null || message.isEmpty())) {
 						MimeBodyPart part = new MimeBodyPart();
 						part.setText(message, cs.name());
 						mp.addBodyPart(part);
