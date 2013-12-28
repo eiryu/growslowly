@@ -9,7 +9,7 @@ import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 
-import org.yumix.mail.session.UserSetting;
+import org.yumix.mail.session.UserAccount;
 import org.yumix.mail.session.SessionProvider;
 import org.yumix.mail.session.qualifier.ICloud;
 
@@ -36,10 +36,10 @@ public class ICloudProvider implements SessionProvider {
 	private String password;
 	
 	@Inject
-	public ICloudProvider(UserSetting userSetting) {
-		address = userSetting.getFromAddress();
-		userName = userSetting.getUserName();
-		password = userSetting.getPassword();
+	public ICloudProvider(UserAccount userAccount) {
+		address = userAccount.getFromAddress();
+		userName = userAccount.getUserName();
+		password = userAccount.getPassword();
 	}
 	
 	/* (non Javadoc)

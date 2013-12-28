@@ -10,7 +10,7 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 
 import org.yumix.mail.session.SessionProvider;
-import org.yumix.mail.session.UserSetting;
+import org.yumix.mail.session.UserAccount;
 import org.yumix.mail.session.qualifier.OCN;
 
 /**
@@ -36,10 +36,10 @@ public class OCNProvider implements SessionProvider {
 	private String password;
 	
 	@Inject
-	public OCNProvider(UserSetting userSetting) {
-		address = userSetting.getFromAddress();
-		userName = userSetting.getUserName();
-		password = userSetting.getPassword();
+	public OCNProvider(UserAccount userAccount) {
+		address = userAccount.getFromAddress();
+		userName = userAccount.getUserName();
+		password = userAccount.getPassword();
 	}
 	
 	/* (non Javadoc)

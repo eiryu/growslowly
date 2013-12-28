@@ -4,7 +4,7 @@ package org.yumix.mail.session;
  * @author Yumi Hiraoka - yumix at outlook.com
  *
  */
-public interface UserSetting {
+public interface UserAccount {
 	/**
 	 * Get the sender address used in "mail.from" properties of JavaMail.
 	 * 
