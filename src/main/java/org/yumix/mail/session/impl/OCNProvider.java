@@ -35,6 +35,8 @@ public class OCNProvider implements SessionProvider {
 	 */
 	private String password;
 	
+	public OCNProvider() { }
+	
 	@Inject
 	public OCNProvider(UserAccount userAccount) {
 		address = userAccount.getFromAddress();

@@ -35,6 +35,8 @@ public class GmailProvider implements SessionProvider {
 	 */
 	private String password;
 	
+	public GmailProvider() { }
+	
 	@Inject
 	public GmailProvider(UserAccount userAccount) {
 		address = userAccount.getFromAddress();

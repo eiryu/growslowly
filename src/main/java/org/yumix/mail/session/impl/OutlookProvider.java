@@ -35,6 +35,8 @@ public class OutlookProvider implements SessionProvider {
 	 */
 	private String password;
 	
+	public OutlookProvider() { }
+	
 	@Inject
 	public OutlookProvider(UserAccount userAccount) {
 		address = userAccount.getFromAddress();

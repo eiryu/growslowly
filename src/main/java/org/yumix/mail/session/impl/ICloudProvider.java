@@ -35,6 +35,8 @@ public class ICloudProvider implements SessionProvider {
 	 */
 	private String password;
 	
+	public ICloudProvider() { }
+	
 	@Inject
 	public ICloudProvider(UserAccount userAccount) {
 		address = userAccount.getFromAddress();
