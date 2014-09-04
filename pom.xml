@@ -3,6 +3,9 @@
   <groupId>org.yumix</groupId>
   <artifactId>growslowly</artifactId>
   <version>0.8</version>
+  <properties>
+     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <build>
     <plugins>
      <plugin>
